@@ -15,7 +15,6 @@ class NetworkEnvironment(gym.Env):
         self.observation_space = spaces.Dict(
             {
                 "links" : spaces.Box(0, 1, shape=(self.num_links,), dtype = int),
-                #1 request at a time 
                 "req" : spaces.Box([0,0,10], [self.num_nodes - 1, self.num_nodes - 1, 20], 
                                    shape=(1, ), dtype=int)
             }
@@ -23,3 +22,15 @@ class NetworkEnvironment(gym.Env):
 
         self.action_space = spaces.MultiDiscrete([self.num_nodes, self.num_slots, 2])
         self.round = 0
+
+        self.utilization = np.zeros((self.num_nodes, self.num_slots), dtype=int)
+        self.current_request = None
+        
+
+        def reset(self):
+            self.utilization = np.zeros((self.num_nodes, self.num_slots), dtype=int)
+            self.current_request = generate_request()
+        
+        def generate_request(self):
+            return np.array([np.random.randint(1, 3+1), ])
+
