@@ -38,20 +38,21 @@ class NetworkEnvironment(gym.Env):
         link_index = (action // 3) // self.num_slots
         slot_index = (action // 3) % self.num_slots
         action_type = action % 3
+        reward = 0
 
         link = list(self.graph.edges())[link_index]
         if action_type == 0:
             if self.link_states[link][slot_index] < self.num_slots:
                 self.link_states[link][slot_index] += 1
-                reward = 1
+                reward += 1
             else:
-                reward = -1
+                reward -= 1
         elif action_type == 1:
             if self.link_states[link][slot_index] > 0:
                 self.link_states[link][slot_index] -= 1
                 reward = 0.5
             else:
-                reward = -0.5
+                reward -= 0.5
 
         done = np.all(self.link_states[link] == self.num_slots)
         info = {}
