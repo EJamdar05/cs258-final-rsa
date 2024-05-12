@@ -26,8 +26,8 @@ config = (PPOConfig()
           .training(gamma=0.999, lr=0.001)
           .environment(env='netenv-v0')
           .resources(num_gpus=0)
-          .env_runners(num_env_runners=0, num_envs_per_env_runner=1)
-        )
+          .env_runners(num_env_runners=1, num_envs_per_env_runner=1)
+         )
 
 algo = config.build()
 
