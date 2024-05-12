@@ -9,15 +9,13 @@ class NetworkEnvironment(gym.Env):
         super().__init__()
         self.graph = nx.read_gml('nsfnet.gml')
         self.num_slots = 10 
-
+        self.total_links = len(self.graph.edges())
         self.link_states = {}
         for edge in self.graph.edges():
             self.link_states[edge] = np.zeros(self.num_slots, dtype=int)
         
-        total_actions = len(self.graph.edges()) * self.num_slots * 3
-        self.action_space = spaces.Discrete(total_actions)
-        self.observation_space = spaces.Box(low=0, high=self.num_slots,
-                                            shape=(total_actions,), dtype=int)
+        self.action_space = spaces.Discrete(self.num_slots * self.total_links * 3)
+        self.observation_space = spaces.Box(low=0, high=self.num_slots, shape=(self.total_links * self.num_slots,), dtype=int)
 
         self.traffic_requests = self.generate_traffic_requests()
 
@@ -37,7 +35,27 @@ class NetworkEnvironment(gym.Env):
         return self.get_observation(), {}
 
     def step(self, action):
-        pass
+        link_index = (action // 3) // self.num_slots
+        slot_index = (action // 3) % self.num_slots
+        action_type = action % 3
+
+        link = list(self.graph.edges())[link_index]
+        if action_type == 0:
+            if self.link_states[link][slot_index] < self.num_slots:
+                self.link_states[link][slot_index] += 1
+                reward = 1
+            else:
+                reward = -1
+        elif action_type == 1:
+            if self.link_states[link][slot_index] > 0:
+                self.link_states[link][slot_index] -= 1
+                reward = 0.5
+            else:
+                reward = -0.5
+
+        done = np.all(self.link_states[link] == self.num_slots)
+        info = {}
+        return self.get_observation(), reward, done, False, info
 
 
     def get_observation(self):
