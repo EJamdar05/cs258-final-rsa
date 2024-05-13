@@ -1,0 +1,6 @@
+time,blocking,"('SEQSUINET, Rice University, Houston', 'SURANET, Georgia Tech, Atlanta')","('SEQSUINET, Rice University, Houston', 'NCSA, University of Illinois, Champaign')","('SEQSUINET, Rice University, Houston', 'San Diego Supercomputer Center')","('Jon Von Neumann Center, Princeton, NJ', 'SURANET, Georgia Tech, Atlanta')","('Jon Von Neumann Center, Princeton, NJ', 'Cornell Theory Center, Ithaca NY')","('Pittsburgh Supercomputer Center', 'Merit Univ of Michigan, Ann Arbor')","('Cornell Theory Center, Ithaca NY', 'Merit Univ of Michigan, Ann Arbor')","('NorthWestNet, Seattle', 'NCAR, Boulder')","('NorthWestNet, Seattle', 'BARRnet, Palo Alto')","('BARRnet, Palo Alto', 'Merit Univ of Michigan, Ann Arbor')","('BARRnet, Palo Alto', 'San Diego Supercomputer Center')","('Westnet, Salt Lake City', 'NCAR, Boulder')","('NCAR, Boulder', 'NCSA, University of Illinois, Champaign')","('MIDnet, Lincoln, NE', 'NCSA, University of Illinois, Champaign')","('NCSA, University of Illinois, Champaign', 'Merit Univ of Michigan, Ann Arbor')"
+1,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.1,0.1,0.0,0.0
+2,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.1,0.1,0.0,0.1
+3,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.1,0.2,0.1,0.1
+4,0,0.1,0.0,0.1,0.1,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.1,0.2,0.1,0.1
+5,0,0.1,0.0,0.1,0.1,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.2,0.3,0.2,0.1
