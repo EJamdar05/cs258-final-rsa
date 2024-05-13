@@ -17,13 +17,21 @@ class NetworkEnvironment(gym.Env):
         self.action_space = spaces.Discrete(self.num_slots * self.total_links * 3)
         self.observation_space = spaces.Box(low=0, high=self.num_slots, shape=(self.total_links * self.num_slots,), dtype=int)
 
+        self.isRandom = False
         self.traffic_requests = self.generate_traffic_requests()
+        self.current_request_index = 0 
+
+        
 
     def generate_traffic_requests(self):
         requests = []
         nodes = list(self.graph.nodes()) 
         for i in range(100):
-            src, dst = random.sample(nodes, 2)  
+            if not self.isRandom:
+                src = "San Diego Supercomputer Center"
+                dst = "Jon Von Neumann Center, Princeton, NJ"
+            else:
+                src, dst = random.sample(nodes, 2)  
             ht = np.random.randint(10, 20) 
             requests.append((src, dst, ht))
         return requests
@@ -32,6 +40,7 @@ class NetworkEnvironment(gym.Env):
         super().reset(seed=seed, options=options)
         for edge in self.link_states:
             self.link_states[edge] = np.zeros(self.num_slots, dtype=int)
+        self.current_request_index = 0
         return self.get_observation(), {}
 
     def step(self, action):
@@ -53,8 +62,8 @@ class NetworkEnvironment(gym.Env):
                 reward = 0.5
             else:
                 reward -= 0.5
-
-        done = np.all(self.link_states[link] == self.num_slots)
+        self.current_request_index += 1
+        done = self.current_request_index >= len(self.traffic_requests)
         info = {}
         return self.get_observation(), reward, done, False, info
 
