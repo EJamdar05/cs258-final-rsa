@@ -7,17 +7,17 @@ import random
 class NetworkEnvironment(gym.Env):
     def __init__(self):
         super().__init__()
-        # Read the network file
+        #Read the network file
         self.graph = nx.read_gml('nsfnet.gml')
-        # Max utilization per slot
+        #Max utilization per slot
         self.num_slots = 10
-        # Total edges/links
+        #Total edges/links
         self.total_links = len(self.graph.edges())
 
-        # State of links
+        #State of links
         self.link_states = {}
         for edge in self.graph.edges():
-            # Initialize the state of all edge utilization to 0
+            #initialize the state of all edge utilization to 0
             self.link_states[edge] = np.zeros(self.num_slots, dtype=int)
 
         self.isRandom = True
