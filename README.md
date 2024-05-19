@@ -10,4 +10,4 @@ CS258 final project using reinforcement learning to better utilize link utilizat
 * Data: contains the data from scenario 1 and 2, as well as utilization of the links
   
 # Branch Breakdown
-A4 branch is the implementation of Martin and ejamdar is the branch of Eshaq. The final report mainly uses results obtained from the A4 Martin branch and is merged into main. The ejamdar branch is a different implementation but will not use the results from it. 
+A4 branch is the implementation of Martin and ejamdar is the branch of Eshaq. The final report mainly uses results obtained from the A4 Martin branch and is merged into main. The ejamdar branch is a different implementation but will not use the results from it. However, if you wanted to observe the ejamdar solution, the branch has the source code as well as the reinfocement learning results and the average utilization results.
